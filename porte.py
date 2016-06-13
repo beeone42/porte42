@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import os, json, sys, urllib, urllib2
+import os, json, signal, sys, urllib, urllib2, time
+from random import *
 
 CONFIG_FILE = 'config.json'
 
@@ -16,13 +17,23 @@ def open_and_load_config():
         print "File [%s] doesn't exist, aborting." % (CONFIG_FILE)
         sys.exit(1)
 
+def signal_handler(signal, frame):
+        print('You pressed Ctrl+C!')
+        sys.exit(0)
+
 """
 Main
 """
-        
-if __name__ == "__main__":
-    config = open_and_load_config()
-    url = config["host"] + "?pid=" + config["doors"]["bocal"] + "&eid=0"
-    res = json.loads(urllib2.urlopen(url).read())
-    print res["firstname"]
 
+if __name__ == "__main__":
+    signal.signal(signal.SIGINT, signal_handler)
+    config = open_and_load_config()
+    last_id = ""
+    url = config["host"] + "?pid=" + config["doors"]["bocal"] + "&eid=0"
+    while 1:
+        res = json.loads(urllib2.urlopen(url).read())
+        if (res["id"] != last_id):
+            msg = choice(config["welcome"]) + " " + res["firstname"]
+            print msg
+            last_id = res["id"]
+        time.sleep(1)
