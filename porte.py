@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, json, sys, requests, urllib, urllib2
+import os, json, sys, urllib, urllib2
 
 CONFIG_FILE = 'config.json'
 
@@ -22,4 +22,7 @@ Main
         
 if __name__ == "__main__":
     config = open_and_load_config()
-    print config
+    url = config["host"] + "?pid=" + config["doors"]["bocal"] + "&eid=0"
+    res = json.loads(urllib2.urlopen(url).read())
+    print res["firstname"]
+
