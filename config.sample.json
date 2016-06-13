@@ -1,0 +1,7 @@
+{
+    "host":"http://srv.domain.com/",
+    "doors":{
+	"porte-1":"12345-abcdef-67890",
+	"porte-2":"54321-uvwxyz-09876"
+    }
+}
