@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, json, signal, sys, urllib, urllib2, time, subprocess, hashlib
+import os, json, signal, sys, urllib, urllib2, time, subprocess, hashlib, glob
 from random import *
 
 CONFIG_FILE = 'config.json'
@@ -49,7 +49,10 @@ def welcome(login, prenom):
                 if ("lang" in j.keys()):
                     lang = j["lang"]
                 if ("mp3" in j.keys()):
-                    mp3 = j["mp3"]
+                    mp3 = "mp3/" + j["mp3"]
+                    if (os.path.isdir(mp3)):
+                        mp3 = choice(glob.glob(mp3 + "*.mp3"))
+                    print mp3
             except:
                 print "cannot load json"
     else:
@@ -58,7 +61,7 @@ def welcome(login, prenom):
         print msg
         say(msg, lang)
     if (mp3 != ""):
-        subprocess.call([config["player"], "mp3/" + mp3])
+        subprocess.call([config["player"], mp3])
     
 """
 Main
@@ -74,6 +77,7 @@ if __name__ == "__main__":
     while 1:
         res = json.loads(urllib2.urlopen(url).read())
         if (res["id"] != last_id):
+            res["login"] = "mporcel"
             welcome(res["login"], res["firstname"])
             last_id = res["id"]
         time.sleep(1)
