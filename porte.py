@@ -21,15 +21,40 @@ def signal_handler(signal, frame):
         print('You pressed Ctrl+C!')
         sys.exit(0)
 
-def say(txt):
-    hash = hashlib.md5(txt).hexdigest()
+def say(txt, lang):
+    t = txt.encode('utf-8')
+    hash = hashlib.md5(txt.encode('ascii', 'replace') + " / " + lang).hexdigest()
     fname = "cache/" + hash + ".mp3"
-    if (os.path.isfile(fname) == False):
-        urltts = config["tts"] + "?" + urllib.urlencode({'t':msg, 'l':'fr'})
+    if ((os.path.isfile(fname) == False) or (os.stat(fname).st_size == 0)):
+        urltts = config["tts"] + "?" + urllib.urlencode({'t':t, 'l':lang})
         print urltts
         urllib.urlretrieve(urltts, fname)
     subprocess.call([config["player"], fname])
 
+def welcome(login, prenom):
+    msg = ""
+    mp3 = ""
+    lang = "fr"
+    jname = "custom/" + login + ".json"
+    if (os.path.isfile(jname)):
+        with open(jname, 'r') as custom_file:
+            print jname
+            j = json.loads(custom_file.read())
+            print j
+            if ("txt" in j.keys()):
+                msg = j["txt"]
+            if ("lang" in j.keys()):
+                lang = j["lang"]
+            if ("mp3" in j.keys()):
+                mp3 = j["mp3"]
+    else:
+        msg = choice(config["msgs"][m]) + " " + prenom
+    if (msg != ""):
+        print msg
+        say(msg, lang)
+    if (mp3 != ""):
+        subprocess.call([config["player"], "mp3/" + mp3])
+    
 """
 Main
 """
@@ -44,8 +69,6 @@ if __name__ == "__main__":
     while 1:
         res = json.loads(urllib2.urlopen(url).read())
         if (res["id"] != last_id):
-            msg = choice(config["msgs"][m]) + " " + res["firstname"]
-            print msg
-            say(msg)
+            welcome(res["login"], res["firstname"])
             last_id = res["id"]
         time.sleep(1)
