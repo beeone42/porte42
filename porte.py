@@ -39,14 +39,19 @@ def welcome(login, prenom):
     if (os.path.isfile(jname)):
         with open(jname, 'r') as custom_file:
             print jname
-            j = json.loads(custom_file.read())
-            print j
-            if ("txt" in j.keys()):
-                msg = j["txt"]
-            if ("lang" in j.keys()):
-                lang = j["lang"]
-            if ("mp3" in j.keys()):
-                mp3 = j["mp3"]
+            try:
+                j = json.loads(custom_file.read())
+                if (m  in j.keys()):
+                    j = j[m]
+                print j
+                if ("txt" in j.keys()):
+                    msg = j["txt"]
+                if ("lang" in j.keys()):
+                    lang = j["lang"]
+                if ("mp3" in j.keys()):
+                    mp3 = j["mp3"]
+            except:
+                print "cannot load json"
     else:
         msg = choice(config["msgs"][m]) + " " + prenom
     if (msg != ""):
