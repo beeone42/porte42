@@ -1,0 +1,10 @@
+{
+  "welcome":
+  {
+    "mp3":"slytama/entree/"
+  },
+  "goodbye":
+  {
+    "mp3":"slytama/02.mp3"
+  }
+}
