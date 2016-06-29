@@ -57,7 +57,7 @@ def welcome(login, prenom):
                     print mp3
             except:
                 print "cannot load json"
-    else:
+    if (msg == "" and mp3 == ""):
         msg = choice(config["msgs"][m]) + " " + prenom
     if (msg != ""):
         print msg

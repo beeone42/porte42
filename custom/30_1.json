@@ -1,0 +1,12 @@
+{
+  "welcome":
+  {
+    "txt":"Salut sexy",
+    "lang":"fr"
+  },
+  "goodbye":
+  {
+    "txt":"au revoir vieille teupu",
+    "lang":"fr"
+  }
+}
