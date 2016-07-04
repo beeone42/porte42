@@ -79,8 +79,11 @@ if __name__ == "__main__":
     last_id = ""
     url = config["host"] + "?pid=" + config["doors"][porte] + "&eid=0"
     while 1:
-        res = json.loads(urllib2.urlopen(url).read())
-        if ((res["id"] != last_id) and ("login" in res.keys()) and ("firstname" in res.keys())):
-            welcome(res["login"], res["firstname"])
-            last_id = res["id"]
+        try:
+            res = json.loads(urllib2.urlopen(url).read())
+            if ((res["id"] != last_id) and ("login" in res.keys()) and ("firstname" in res.keys())):
+                welcome(res["login"], res["firstname"])
+                last_id = res["id"]
+        except:
+            pass
         time.sleep(1)

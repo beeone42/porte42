@@ -1,3 +1,10 @@
 {
-  "mp3":"modem.mp3"
+  "welcome":
+  {
+    "mp3":"modem.mp3"
+  },
+  "goodbye":
+  {
+    "mp3":"modem.mp3"
+  }
 }
