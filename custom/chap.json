@@ -1,10 +1,10 @@
 {
   "welcome":
   {
-    "mp3":"chap.mp3"
+    "mp3":"chap-intro.mp3"
   },
   "goodbye":
   {
-    "mp3":"chap.mp3"
+    "mp3":"chap-intro.mp3"
   }
 }
