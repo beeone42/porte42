@@ -23,7 +23,8 @@ def signal_handler(signal, frame):
 
 def say(txt, lang):
     t = txt.encode('utf-8')
-    hash = hashlib.md5(txt.encode('ascii', 'replace') + " / " + lang).hexdigest()
+    tmp = (txt + " / " + lang)
+    hash = hashlib.md5(tmp.encode('utf-8')).hexdigest()
     fname = "cache/" + hash + ".mp3"
     if ((os.path.isfile(fname) == False) or (os.stat(fname).st_size == 0)):
         urltts = config["tts"] + "?" + urllib.urlencode({'t':t, 'l':lang})
