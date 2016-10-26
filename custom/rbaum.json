@@ -1,0 +1,10 @@
+{
+  "welcome":
+  {
+    "txt":"Bonjour Sequoya",
+   },
+  "goodbye":
+  {
+    "txt":"Au revoir Sequoya",
+  }
+}
