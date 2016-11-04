@@ -1,0 +1,11 @@
+region: eu
+console_ui: false
+log: stdout
+tunnels:
+  http:
+    proto: http
+    addr: 5000
+  dash:
+    proto: http
+    addr: 4040
+    inspect: false
