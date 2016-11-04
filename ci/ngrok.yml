@@ -1,11 +1,5 @@
 region: eu
-console_ui: false
+json_resolver_url: ""
+dns_resolver_ips: []
 log: stdout
-tunnels:
-  http:
-    proto: http
-    addr: 5000
-  dash:
-    proto: http
-    addr: 4040
-    inspect: false
+console_ui: "false"

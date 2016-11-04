@@ -1,4 +1,10 @@
+
+import signal
+import sys, os, time
+import subprocess
+
 from flask import Flask
+from flask import request
 from flask_hookserver import Hooks
 
 import urllib2
@@ -10,15 +16,50 @@ logging.captureWarnings(True)
 
 config = {}
 
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
+def signal_handler(signal, frame):
+    global ngrok
+    print('Exiting...')
+    shutdown_server()
+    ngrok.terminate()
+    sys.exit(0)
+
 def read_config(cf):
     global config
     with open(cf) as json_data_file:
         config = json.load(json_data_file)
         print config
 
+def start_ngrok():
+    global ngrok
+    FNULL = open(os.devnull, 'w')
+    ngrok = subprocess.Popen(["./ngrok", "start", "--none", "-config", "./ngrok.yml"])
+    time.sleep(1)
+    assert ngrok.poll() is None, "ngrok terminated abrutly"
+
+def create_tunnel(name, port):
+    headers = {"Content-Type": "application/json" }
+    datas = {
+        "name": name,
+        "addr": str(port),
+        "proto": "http"
+        }
+    print datas
+    r = requests.post('http://localhost:4040/api/tunnels',  headers=headers, data=json.dumps(datas))
+    print r.text
+    return r.json()
+
 def get_public_url():
-    response = urllib2.urlopen('http://localhost:4040/api/tunnels')
-    data = json.load(response)   
+    try:
+        response = urllib2.urlopen('http://localhost:4040/api/tunnels')
+        data = json.load(response)   
+    except:
+        data = {}
     tuns = data.get('tunnels', [])
     public_url = ''
     for t in tuns:
@@ -69,9 +110,21 @@ def update_github_webhook(token, owner, repo, pu):
     add_github_webhooks(url, headers, pu)
 
 read_config('config.json')
+start_ngrok()
+create_tunnel("http", 5000)
+'''create_tunnel("dash", 4040)'''
+time.sleep(1)
 pu = get_public_url()
 print pu
-update_github_webhook(config.get('github-token'), config.get('github-owner'), config.get('github-repo'), pu)
+if (pu != ''):
+    update_github_webhook(config.get('github-token'),
+                          config.get('github-owner'),
+                          config.get('github-repo'), pu)
+else:
+    print "Fatal: unable to retrieve ngrok tunnel url"
+    ngrok.terminate()
+    sys.exit(0)
+
 
 app = Flask(__name__)
 app.config['VALIDATE_IP'] = False
@@ -86,4 +139,5 @@ def ping(data, guid):
 def ping(data, guid):
     return 'pull'
 
+signal.signal(signal.SIGINT, signal_handler)
 app.run()
