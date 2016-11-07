@@ -16,16 +16,9 @@ logging.captureWarnings(True)
 
 config = {}
 
-def shutdown_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
-    func()
-
 def signal_handler(signal, frame):
     global ngrok
     print('Exiting...')
-    shutdown_server()
     ngrok.terminate()
     sys.exit(0)
 
@@ -51,7 +44,6 @@ def create_tunnel(name, port):
         }
     print datas
     r = requests.post('http://localhost:4040/api/tunnels',  headers=headers, data=json.dumps(datas))
-    print r.text
     return r.json()
 
 def get_public_url():
