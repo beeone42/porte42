@@ -6,6 +6,7 @@
   },
   "goodbye":
   {
-    "mp3":"soviet.mp3"
+    "mp3":"soviet.mp3",
+    "test":"test"
   }
 }
