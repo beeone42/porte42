@@ -12,20 +12,13 @@ import requests
 import json
 import logging
 logging.captureWarnings(True)
-
+import git
 
 config = {}
-
-def shutdown_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
-    func()
 
 def signal_handler(signal, frame):
     global ngrok
     print('Exiting...')
-    shutdown_server()
     ngrok.terminate()
     sys.exit(0)
 
@@ -39,20 +32,24 @@ def start_ngrok():
     global ngrok
     FNULL = open(os.devnull, 'w')
     ngrok = subprocess.Popen(["./ngrok", "start", "--none", "-config", "./ngrok.yml"])
-    time.sleep(1)
+    time.sleep(2)
     assert ngrok.poll() is None, "ngrok terminated abrutly"
 
-def create_tunnel(name, port):
+def create_tunnel(name, port, inspect = False):
     headers = {"Content-Type": "application/json" }
     datas = {
         "name": name,
         "addr": str(port),
-        "proto": "http"
+        "proto": "http",
+        "inspect": inspect
         }
     print datas
     r = requests.post('http://localhost:4040/api/tunnels',  headers=headers, data=json.dumps(datas))
-    print r.text
-    return r.json()
+    try:
+        j = r.json()
+    except:
+        j = {}
+    return j
 
 def get_public_url():
     try:
@@ -110,12 +107,18 @@ def update_github_webhook(token, owner, repo, pu):
     add_github_webhooks(url, headers, pu)
 
 read_config('config.json')
+
 start_ngrok()
-create_tunnel("http", 5000)
-'''create_tunnel("dash", 4040)'''
 time.sleep(1)
+
+create_tunnel("http", 5000, True)
+time.sleep(1)
+create_tunnel("dash", 4040, False)
+time.sleep(1)
+
 pu = get_public_url()
 print pu
+
 if (pu != ''):
     update_github_webhook(config.get('github-token'),
                           config.get('github-owner'),
@@ -136,7 +139,11 @@ def ping(data, guid):
     return 'pong'
 
 @hooks.hook('push')
-def ping(data, guid):
+def push(data, guid):
+    g = git.cmd.Git('/root/porte42/')
+    print "pulling..."
+    g.pull()
+    print "done."
     return 'pull'
 
 signal.signal(signal.SIGINT, signal_handler)
