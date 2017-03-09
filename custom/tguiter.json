@@ -1,10 +1,10 @@
 {
   "welcome":
   {
-    "mp3":"tguiter_01.mp3"
+    "mp3":"xitope/tguiter_01.mp3"
   },
   "goodbye":
   {
-    "mp3":"flute.mp3"
+    "mp3":"xitope/flute.mp3"
   }
 }
