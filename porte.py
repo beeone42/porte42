@@ -54,7 +54,7 @@ def welcome(login, prenom):
                 if ("mp3" in j.keys()):
                     mp3 = "mp3/" + j["mp3"]
                     if (os.path.isdir(mp3)):
-                        mp3 = choice(glob.glob(mp3 + "*.mp3"))
+                        mp3 = choice(glob.glob(mp3 + "/*.mp3"))
                     print mp3
             except:
                 print "cannot load json"
