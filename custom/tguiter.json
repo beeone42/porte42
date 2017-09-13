@@ -1,10 +1,12 @@
 {
   "welcome":
   {
-    "mp3":"xitope/tguiter_01.mp3"
+    "txt":"Wesh beau gosse",
+    "lang":"fr"
   },
   "goodbye":
   {
-    "mp3":"xitope/flute.mp3"
+    "txt":"Ciao, beau gosse",
+    "lang":"fr"
   }
 }
