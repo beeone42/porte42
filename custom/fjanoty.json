@@ -1,12 +1,12 @@
 {
   "welcome":
   {
-    "txt":"Wesh beau gosse",
+    "txt":"Bonjour Lapin",
     "lang":"fr"
-  },
+   },
   "goodbye":
   {
-    "txt":"Ciao, beau gosse",
+    "txt":"Au revoir Lapin",
     "lang":"fr"
   }
 }
