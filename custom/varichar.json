@@ -1,0 +1,10 @@
+{
+  "welcome":
+  {
+    "mp3": "varichard/in"
+  },
+  "goodbye":
+  {
+    "mp3": "varichard/out"
+  }
+}
