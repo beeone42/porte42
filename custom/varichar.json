@@ -1,10 +1,10 @@
 {
   "welcome":
   {
-    "mp3": "varichard/in"
+    "mp3": "varchar/in"
   },
   "goodbye":
   {
-    "mp3": "varichard/out"
+    "mp3": "varchar/out"
   }
 }
