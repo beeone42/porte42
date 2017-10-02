@@ -2,4 +2,8 @@ config.json
 *~
 *.pyc
 cache/
+<<<<<<< HEAD
 ci/
+=======
+.DS_Store
+>>>>>>> 4eb91cc857403185352075d0981a19fe49553637
