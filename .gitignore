@@ -2,3 +2,4 @@ config.json
 *~
 *.pyc
 cache/
+.DS_Store

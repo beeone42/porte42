@@ -1,12 +1,10 @@
 {
   "welcome":
   {
-    "txt":"Salut sexy",
-    "lang":"fr"
+    "mp3": "trentinou/in_jafar.mp3"
   },
   "goodbye":
   {
-    "txt":"au revoir vieille teupu",
-    "lang":"fr"
+    "mp3": "trentinou/out_rayman.mp3"
   }
 }
