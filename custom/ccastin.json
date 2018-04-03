@@ -1,0 +1,10 @@
+{
+  "welcome":
+  {
+    "mp3":"ccastin/zambla.mp3"
+  },
+  "goodbye":
+  {
+    "mp3":"ccastin/aurevoir.mp3"
+  }
+}
