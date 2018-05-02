@@ -1,10 +1,10 @@
 {
 	"welcome":
 	{
-		"mp3":"brel-baz/in/"
+		"mp3":"brel-baz/"
 	},
 	"goodbye":
 	{
-		"mp3":"brel-baz/out/"
+		"mp3":"brel-baz/"
 	}
 }
