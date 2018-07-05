@@ -1,0 +1,12 @@
+{
+  "welcome":
+  {
+    "txt":"Bonjour Petit Branleur",
+    "lang":"fr"
+   },
+  "goodbye":
+  {
+    "txt":"Ni Dieu Ni Maitre",
+    "lang":"fr"
+  }
+}
