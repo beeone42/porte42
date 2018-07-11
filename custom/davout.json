@@ -1,12 +1,10 @@
 {
   "welcome":
   {
-    "txt":"bienvenue p'tit loup bleu",
-    "lang":"fr"
+      "mp3":"laurie.mp3"
   },
   "goodbye":
   {
-    "txt":"a bientot p'tit loup bleu",
-    "lang":"fr"
+      "mp3":"laurie.mp3"
   }
 }
