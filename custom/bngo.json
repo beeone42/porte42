@@ -1,10 +1,10 @@
 {
 	"welcome":
 	{
-		"mp3":"bngo/in.mp3"
+		"mp3":"bngo/in/"
 	},
 	"goodbye":
 	{
-		"mp3":"bngo/out.mp3"
+		"mp3":"bngo/out/"
 	}
 }
