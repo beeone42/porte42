@@ -88,7 +88,10 @@ if __name__ == "__main__":
                     print "pid: %s, rpid: %s" % (res["pin"],  res["rpin"])
                     say("game over", "en")
                 else:
-                    welcome(res["login"], res["firstname"])
+                    if ("usual_first_name" in res.keys()):
+                        welcome(res["login"], res["usual_first_name"])
+                    else:
+                        welcome(res["login"], res["firstname"])
                 last_id = res["id"]
         except:
             pass
