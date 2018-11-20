@@ -1,10 +1,10 @@
 {
   "welcome":
   {
-      "mp3":"laurie.mp3"
+      "mp3":"davout/"
   },
   "goodbye":
   {
-      "mp3":"laurie.mp3"
+      "mp3":"davout/"
   }
 }
