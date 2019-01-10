@@ -1,0 +1,10 @@
+{
+	"welcome":
+	{
+		"mp3":"mbelloun/mbelloun_in"
+	},
+	"goodbye":
+	{
+		"mp3":"mbelloun/mbelloun_out"
+	}
+}
