@@ -1,10 +1,12 @@
 {
 	"welcome":
 	{
-		"mp3":"mbelloun/in"
+		"txt":"Move the fuck away",
+		"lang":"en"
+		"mp3":"mbelloun"
 	},
 	"goodbye":
 	{
-		"mp3":"mbelloun/out"
+		"mp3":"mbelloun"
 	}
 }
