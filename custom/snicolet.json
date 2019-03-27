@@ -1,10 +1,10 @@
 {
 		"welcome":
 		{
-				"mp3":"snicolet/whothehell.mp3"
+				"mp3":"snicolet/in/"
 		},
 		"goodbye":
 		{
-				"mp3":"snicolet/exit.mp3"
+				"mp3":"snicolet/out/"
 		}
 }
