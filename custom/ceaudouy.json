@@ -1,10 +1,10 @@
 {
 	"welcome":
 	{
-		"mp3": "lpelissi/entree"
+		"mp3": "ceaudouy/entree"
 	},
 	"goodbye":
 	{
-		"mp3": "lpelissi/sortie"
+		"mp3": "ceaudouy/sortie"
 	}
 }
