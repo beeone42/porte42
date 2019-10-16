@@ -1,0 +1,10 @@
+{
+  "welcome":
+  {
+    "mp3": "anroche/allo.mp3"
+  },
+  "goodbye":
+  {
+    "mp3": "anroche/boom.mp3"
+  }
+}
