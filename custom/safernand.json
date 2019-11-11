@@ -1,0 +1,10 @@
+{
+	"welcome":
+	{
+		"mp3":"safernand/in"
+	},
+	"goodbye":
+	{
+		"mp3":"safernand/out"
+	}
+}
