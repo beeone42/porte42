@@ -1,10 +1,10 @@
 {
 	"welcome":
 	{
-		"mp3":"safernan/in"
+		"mp3":"safernan"
 	},
 	"goodbye":
 	{
-		"mp3":"safernan/out"
+		"mp3":"safernan"
 	}
 }
