@@ -1,10 +1,10 @@
 {
 	"welcome":
 	{
-		"mp3":"lubernar/in/in.mp3"
+		"mp3":"lubernar/in/"
 	},
 	"goodbye":
 	{
-		"mp3":"lubernar/out/out.mp3"
+		"mp3":"lubernar/out/"
 	}
 }
