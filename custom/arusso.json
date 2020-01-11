@@ -1,0 +1,10 @@
+{
+	"welcome":
+	{
+		"mp3": "FEBB_WinningRoad.mp3"
+	},
+	"goodbye":
+	{
+		"mp3": "arusso_leave.mp3"
+	}
+}
